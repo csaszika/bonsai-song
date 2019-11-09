@@ -17,6 +17,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxModule } from '@angular/material';
+import { StoreModule } from '@ngrx/store';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { AccessTokenInterceptor } from './core/interceptors/access-token.interceptor';
+import { reducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { SongsEffects } from './store/songs/effects';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,7 @@ import { MatCheckboxModule } from '@angular/material';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -38,9 +45,16 @@ import { MatCheckboxModule } from '@angular/material';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    StoreModule.forRoot(reducers, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    EffectsModule.forRoot([SongsEffects])
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AccessTokenInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
