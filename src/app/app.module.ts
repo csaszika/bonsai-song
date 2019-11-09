@@ -12,12 +12,18 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { ShellComponent } from './shell/shell.component';
+import { SongsContainerComponent } from './shell/songs-container/songs-container.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
-    ShellComponent
+    ShellComponent,
+    SongsContainerComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +34,11 @@ import { ShellComponent } from './shell/shell.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
