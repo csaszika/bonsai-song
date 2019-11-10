@@ -12,7 +12,7 @@ export const selectSongs = createSelector(
 export const selectSelectedSongsIds = createSelector(
   selectSongsFeature,
   (state: SongsState): Array<SongId> => {
-    return state.selectedSongsIds.values();
+    return Array.from(state.selectedSongsIds);
   }
 );
 export const selectIsAllSongsSelected = createSelector(

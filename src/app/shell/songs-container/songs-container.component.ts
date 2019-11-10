@@ -28,7 +28,7 @@ export class SongsContainerComponent implements AfterViewInit, OnInit, OnDestroy
       .add(this.store.pipe(select(selectIsAllSongsSelected)).subscribe((isAllSelected: boolean) => {
         this.isAllSelected = isAllSelected;
       }))
-      .add(this.store.pipe(select(selectSelectedSongsIds)).subscribe((ids: Set<SongId>) => {
+      .add(this.store.pipe(select(selectSelectedSongsIds)).subscribe((ids: Array<SongId>) => {
         this.selectedSongsIds = new Set<SongId>(ids);
       }));
   }
