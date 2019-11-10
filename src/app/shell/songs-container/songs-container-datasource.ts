@@ -1,20 +1,22 @@
 import { DataSource } from '@angular/cdk/collections';
 import { Observable } from 'rxjs';
 
-export interface SongsContainerItem {
-  id: string;
+export type SongId = string;
+
+export interface SongsItem {
+  id: SongId;
   performer: string;
   title: string;
   rating: number;
 }
 
-export class SongsContainerDataSource extends DataSource<SongsContainerItem> {
+export class SongsContainerDataSource extends DataSource<SongsItem> {
 
-  constructor(private songs$: Observable<SongsContainerItem[]>) {
+  constructor(private songs$: Observable<SongsItem[]>) {
     super();
   }
 
-  connect(): Observable<SongsContainerItem[]> {
+  connect(): Observable<SongsItem[]> {
     return this.songs$;
   }
 
